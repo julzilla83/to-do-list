@@ -1,0 +1,435 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: large;
+}
+
+body, html {
+    height: 100vh;
+    width: 100vw;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.page-wrapper {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 150px auto;
+}
+
+.header {
+    display: flex;
+    grid-column: 1 / span 2;
+    grid-row: 1 / 2;
+    align-self: center;
+    justify-self: center;
+    background-color: #0a2c48;
+    color: white;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 3em;
+}
+
+.project-sidebar {
+    grid-row: 2 / 3;
+    min-width: 300px;
+    background-color: #0e406a;
+    color: #bdcbf3;
+    font-weight: 700;
+}
+
+.project-sidebar .add-proj-btn {
+    float: right;
+    padding: 0.25rem;
+    border-radius: 1rem;
+    margin-right: 2rem;
+    height: 2rem;
+    width: 2rem;
+    background-color: transparent;
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-weight: 900;
+    border: 1px solid white;
+}
+
+.project-sidebar .add-proj-btn:focus{
+    outline: 0;
+}
+
+.project-sidebar .add-proj-btn:hover{
+    background-color: #54b3d6;
+}
+
+.project-list {
+    padding: 1rem 2rem;
+    list-style-type: none;
+}
+
+.project-list li {
+    margin: 1rem 1rem;
+    cursor: pointer;
+}
+
+.project-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 5rem;
+    border-bottom: 4px solid #145a94;
+}
+
+.project-info .btn-container {
+    grid-column: 2 / 3;
+    grid-row: 1 / span 2;
+    align-self: center;
+    justify-self: end;
+    padding: 1rem 0;
+    display: flex;
+    gap: 0.3rem;
+    margin-right: 1rem;
+}
+
+.project-info .btn-container button {
+    padding: 2px 5px;
+    margin-left: 5px;
+}
+
+/* .project-info input[type=text] {
+    font-size: larger;
+} */
+
+.input-locked {
+    pointer-events: none;
+    border: 1px solid transparent;
+}
+
+.main {
+    grid-row: 2 / 3;
+    padding: 2rem;
+}
+
+.task-list-container {
+    grid-column: 1 / -1;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid #54b3d6;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    padding: 1rem 1rem 1rem 2rem;
+}
+
+.task-container:hover {
+    box-shadow: 3px 8px 14px -10px rgba(0,0,0,0.52);
+    -webkit-box-shadow: 3px 8px 14px -10px rgba(0,0,0,0.52);
+    -moz-box-shadow: 3px 8px 14px -10px rgba(0,0,0,0.52);
+}
+
+.task-container button {
+    padding: 2px 5px;
+}
+
+.task-container .remaining {
+    width: 10rem;
+    margin: 0 1rem;
+}
+
+.due-date {
+    margin-left: auto;
+    width: 10rem;
+    margin: 0 1rem;
+}
+
+/* .priority {
+    text-transform: capitalize;
+} */
+
+/* .priority::before {
+    content: '|';
+    margin: 10px;
+} */
+
+.priority-level {
+    margin: 0 2rem 0 0;
+}
+
+.popup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.25);
+    /* opacity: 0.7; */
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+input, select {
+    border: 1px solid #145a94;
+    padding: 0.25rem;
+    background-color: transparent;
+}
+
+.newProjEntry, .newTaskEntry {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: white;
+    padding: 2rem;
+    border: 2px solid #145a94;
+    border-radius: 0.5rem;
+    box-shadow: 2px 10px 29px -10px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 10px 29px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 10px 29px -10px rgba(0,0,0,0.75);
+}
+
+.newProjEntry label, .newTaskEntry label{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.newProjEntry h3, .newTaskEntry h3 {
+    text-transform: uppercase;
+    margin: auto;
+    font-size: larger;
+    color: #145a94;
+}
+
+.newProjEntry .btn-container, .newTaskEntry .btn-container{
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.newProjEntry button, .newTaskEntry button {
+    width: 4.3rem;
+    height: 2rem;
+    background-color: #0e406a;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    font-size: small;
+    font-weight: 700;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.newProjEntry .popup-addProj-btn:hover,
+.newTaskEntry .popup-addTask-btn:hover {
+    background-color: #4CAF50;
+}
+
+.newProjEntry .popup-cancelProj-btn:hover,
+.newTaskEntry .popup-cancelTask-btn:hover {
+    background-color: #f44336;
+}
+
+.newTaskEntry select {
+    margin: 0;
+}
+
+.newTaskEntry input[type="date"] {
+    margin: 0;
+}
+
+.hidden {
+    display: none;
+    z-index: -1;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+input[type="date"]{
+    margin: 0 2rem 0 0;
+    font-size: large !important;
+}
+
+#priority-level {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    width: 9ch;
+    background: none;
+}
+
+.target {
+    margin-left: auto;
+}
+
+/* checkbox's look */
+.checkbox-container {
+    position: relative;
+}
+  
+.checkbox-container label {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 28px;
+    left: -15px;
+    position: absolute;
+    top: -3px;
+    width: 28px;
+}
+  
+.checkbox-container label:after {
+    border: 2px solid #fff;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 6px;
+    left: 7px;
+    opacity: 0;
+    position: absolute;
+    top: 8px;
+    transform: rotate(-45deg);
+    width: 12px;
+}
+  
+.checkbox-container input[type="checkbox"] {
+    visibility: hidden;
+}
+  
+.checkbox-container input[type="checkbox"]:checked + label {
+    background-color: #66bb6a;
+    border-color: #66bb6a;
+}
+  
+.checkbox-container input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+}
+/* checkbox's look - end */
+
+/* li animation */
+ul > * {
+    padding: 0.5rem 0;
+}
+
+li {
+    background-image: linear-gradient(
+        to right,
+        white,
+        white 50%,
+        #73c0ff 50%
+    );
+    background-size: 200% 100%;
+    background-position: -100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+li:before {
+    content: '';
+    background: #54b3d6;
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+}
+
+li:hover {
+    background-position: 0;
+}
+
+li:hover::before {
+    width: 100%;
+}
+/* li animation -end */
+
+/* project info */
+.project-info {
+    margin: 1rem;
+    padding: 0 0 2rem 0;
+}
+
+.project-name {
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #0a2c48 ;
+    font-size: x-large;
+}
+/* project info - end */
+
+/* edit and delete buttons */
+.project-info button, .task-container button {
+    height: 1.7rem;
+    border-radius: 1rem;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: small;
+    cursor: pointer;
+    background-color: #145a94;
+    color: white;
+}
+
+.project-info .proj-edit-btn, .task-container .task-edit-btn {
+    width: 3rem;
+}
+
+.project-info .proj-edit-btn:hover, .task-container .task-edit-btn:hover {
+    background-color: #4CAF50;
+    width: 3rem;
+}
+
+.project-info .proj-del-btn, .task-container .task-delete-btn {
+    width: 4rem;
+}
+
+.project-info .proj-del-btn:hover, .task-container .task-delete-btn:hover {
+    background-color: #f44336;
+    width: 4rem;
+}
+
+.add-task-btn {
+    float: right;
+    padding: 0.25rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    height: 2rem;
+    width: 2rem;
+    background-color: #145a94;
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-weight: 900;
+    border: 0;
+}
+
+.add-task-btn:hover {
+    background-color: #54b3d6;
+}
+
+/* addTask, edit and delete buttons - end*/
